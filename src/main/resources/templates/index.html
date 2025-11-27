@@ -2,121 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Redis User Manager | @Lavanya</title>
+    <title>Redis User Manager | @Devops</title>
     <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #e8f0ff; /* light blue background */
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #0d47a1; /* deep blue */
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        h1 span { color: #ffcc00; }
-
-        .main-container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-        }
-
-        .card {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            border-left: 5px solid #0d47a1; /* blue accent */
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #90caf9;
-            border-radius: 6px;
-        }
-
-        .btn-primary { background: #1565c0; color: white; }
-        .btn-secondary { background: #00897b; color: white; }
-        .btn-danger { background: #d32f2f; color: white; }
-
-        .message.success { background: #c8e6c9; color: #1b5e20; }
-        .message.error { background: #ffcdd2; color: #b71c1c; }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        th {
-            background: #0d47a1;
-            color: white;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 15px;
-            background: #0d47a1;
-            color: white;
-        }
-    </style>
 </head>
 <body>
 
-<header>
-    <h1>Redis User Manager <span>@Lavanya</span></h1>
+<header class="header">
+    <div class="header-content">
+        <h1>Redis User Manager</h1>
+        <p>Developed by <span>@Lavanya</span></p>
+    </div>
 </header>
 
 <main>
     <div class="main-container">
 
-        <div class="card">
-            <h2 class="section-title">Add User</h2>
-            <form action="/save" method="post">
-                <input type="text" name="id" placeholder="User ID" required>
-                <input type="text" name="name" placeholder="User Name" required>
-                <button type="submit" class="btn-primary">Add User</button>
-            </form>
-        </div>
-
-        <div class="card">
-            <h2 class="section-title">Fetch User</h2>
-            <form action="/fetch" method="post">
-                <input type="text" name="id" placeholder="Enter User ID" required>
-                <button type="submit" class="btn-secondary">Fetch User</button>
-            </form>
-
-            <div th:if="${user}">
-                <p><b>ID:</b> <span th:text="${user.id}"></span></p>
-                <p><b>Name:</b> <span th:text="${user.name}"></span></p>
-                <form action="/delete" method="post">
-                    <input type="hidden" name="id" th:value="${user.id}">
-                    <button type="submit" class="btn-danger">Delete User</button>
+        <!-- Add / Fetch Section -->
+        <section class="form-section">
+            <div class="card">
+                <h2>Add User</h2>
+                <form action="/save" method="post">
+                    <input type="text" name="id" placeholder="User ID" required>
+                    <input type="text" name="name" placeholder="User Name" required>
+                    <button type="submit" class="btn btn-primary">Add User</button>
                 </form>
             </div>
-        </div>
 
-        <div th:if="${successMessage}" class="message success" th:text="${successMessage}"></div>
-        <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></div>
+            <div class="card">
+                <h2>Fetch User by ID</h2>
+                <form action="/fetch" method="post">
+                    <input type="text" name="id" placeholder="Enter User ID" required>
+                    <button type="submit" class="btn btn-secondary">Fetch User</button>
+                </form>
 
-        <section th:if="${allUsers}">
-            <h2 class="section-title">All Users (Insertion Order)</h2>
+                <div class="user-info" th:if="${user}">
+                    <p><b>ID:</b> <span th:text="${user.id}"></span></p>
+                    <p><b>Name:</b> <span th:text="${user.name}"></span></p>
+                    <form action="/delete" method="post">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <button type="submit" class="btn btn-danger">Delete User</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Messages -->
+        <section class="message-section">
+            <div class="message success" th:if="${successMessage}" th:text="${successMessage}"></div>
+            <div class="message error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+        </section>
+
+        <!-- All Users Table -->
+        <section class="table-section" th:if="${allUsers}">
+            <h2>All Users (Insertion Order)</h2>
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr><th>ID</th><th>Name</th></tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr th:each="user : ${allUsers}">
@@ -131,9 +77,20 @@
     </div>
 </main>
 
-<footer>
-    © 2025 @Lavanya | Redis User Manager
+<footer class="footer">
+    <p>© 2025 @Devops | Redis User Manager</p>
 </footer>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const messages = document.querySelectorAll('.message');
+    messages.forEach(msg => {
+      setTimeout(() => {
+        msg.classList.add('fade-out');
+      }, 3000);
+    });
+  });
+</script>
 
 </body>
 </html>
