@@ -1,0 +1,100 @@
+# IntelliJ
+/.idea/
+/*.iml
+/*.iws
+/out/
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+/.recommenders/
+
+# VS Code
+/.vscode/
+
+# Build directories
+/target/
+/build/
+/.gradle/
+/node_modules/
+
+# Gradle wrapper (keep wrapper jar tracked)
+/gradle/wrapper/gradle-wrapper.properties
+!/gradle/wrapper/gradle-wrapper.jar
+
+# Maven extras
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+
+# Logs and temp
+*.log
+*.tmp
+*.temp
+*.swp
+*.swx
+*~
+tmp/
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Spring Boot / Devtools
+spring-boot-devtools.properties
+/.springLoaded
+
+# IDE / Tooling
+/.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+# Generated sources
+/generated/
+target/generated-sources/
+target/generated-test-sources/
+
+# Test output
+/test-output/
+surefire-reports/
+failsafe-reports/
+
+# Coverage
+*.lcov
+coverage/
+
+# Docker
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+*.jks
+*.keystore
+/*.p12
+
+# Misc
+# keep track of lockfiles if desired; ignore others
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

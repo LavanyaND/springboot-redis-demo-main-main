@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f4f2ff; /* Light lavender */
+    color: #333;
+}
+/* Table Section */
+.table-section {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Wrapper */
+.table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Table */
+table {
+    width: 100%;
+    max-width: 600px;  /* keeps table centered & aligned */
+    border-collapse: collapse;
+    border-radius: 14px;
+    overflow: hidden;
+    background: white;
+}
+
+/* Table Header */
+table th {
+    background: #6c3bff;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Table Cells */
+table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e5dfff;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Hover effect */
+table tr:hover {
+    background: #f4f0ff;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #d8c7ff, #b89aff);
+    color: #3b2e63;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(120, 80, 200, 0.3);
+}
+
+.header h1 {
+    font-size: 2.3rem;
+    color: #3c2c66;
+}
+
+.header span {
+    color: #6c3bff;
+    font-weight: 700;
+}
+
+/* Main */
+.main-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+/* Cards */
+.form-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.card {
+    background: #ffffff;
+    width: 360px;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #ded9ff;
+    box-shadow: 0 8px 20px rgba(140, 100, 240, 0.15);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 26px rgba(125, 85, 220, 0.25);
+}
+
+.card h2 {
+    color: #6c3bff;
+    margin-bottom: 1.2rem;
+}
+
+/* Inputs */
+.card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid #c9baff;
+    background: #faf8ff;
+    transition: 0.3s;
+}
+
+.card input:focus {
+    border-color: #6c3bff;
+    box-shadow: 0 0 8px rgba(108, 59, 255, 0.4);
+    outline: none;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+/* Button Colors */
+.btn-primary {
+    background: #6c3bff;
+    color: white;
+}
+.btn-primary:hover {
+    background: #562dcc;
+}
+
+.btn-secondary {
+    background: #9a7bff;
+    color: white;
+}
+.btn-secondary:hover {
+    background: #7a60d9;
+}
+
+.btn-danger {
+    background: #ff6b8a;
+    color: white;
+    margin-top: 10px;
+}
+.btn-danger:hover {
+    background: #e85073;
+}
+
+/* User Info */
+.user-info {
+    background: #f3ecff;
+    border: 1px solid #d9ceff;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(120, 80, 220, 0.15);
+    margin-top: 1rem;
+}
+
+/* Messages */
+.message-section {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.message {
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    display: inline-block;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    transition: 0.8s;
+}
+
+.message.success {
+    background: #d7ffe7;
+    color: #1b8c4c;
+    border: 1px solid #2cc56b;
+}
+
+.message.error {
+    background: #ffe3e3;
+    color: #c93434;
+    border: 1px solid #ff6b6b;
+}
+
+.message.fade-out {
+    opacity: 0;
+    transform: translateY(-15px);
+}
+
+/* Table */
+.table-section h2 {
+    color: #3b2e63;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+table th {
+    background: #6c3bff;
+    color: white;
+    padding: 12px;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5dfff;
+}
+
+table tr:hover {
+    background: #f1ecff;
+}
+
+/* Footer */
+.footer {
+    background: #e8e0ff;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    color: #4b3b87;
+    border-top: 1px solid #cfc2ff;
+}

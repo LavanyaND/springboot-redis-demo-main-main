@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.2
+    container_name: redis_container
+    ports:
+      - "6379:6379"
+    networks:
+      - sak-network
+
+  app:
+    build: .
+    image: sak_redis_app
+    container_name: spring_redis_app
+    depends_on:
+      - redis
+    ports:
+      - "8084:8084"
+    networks:
+      - sak-network
+    environment:
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+
+networks:
+  sak-network:
+    driver: bridge
