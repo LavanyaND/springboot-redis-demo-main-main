@@ -2,67 +2,151 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Redis User Manager | @whitehorse</title>
+    <title>Redis User Manager | @Lavanya</title>
     <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #283593;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        h1 span { color: #ffeb3b; }
+
+        .main-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn-primary { background: #3949ab; color: white; }
+        .btn-secondary { background: #00897b; color: white; }
+        .btn-danger { background: #e53935; color: white; }
+
+        .message {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .success { background: #c8e6c9; color: #256029; }
+        .error { background: #ffcdd2; color: #b71c1c; }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #283593;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            background: #1a237e;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
-<header class="header">
-    <div class="header-content">
-        <h1>Redis User Manager</h1>
-        <p>Developed by <span>@whitehorse</span></p>
-    </div>
+<header>
+    <h1>Redis User Manager <span>@Lavanya</span></h1>
 </header>
 
 <main>
     <div class="main-container">
 
-        <!-- Add / Fetch Section -->
-        <section class="form-section">
-            <div class="card">
-                <h2>Add User</h2>
-                <form action="/save" method="post">
-                    <input type="text" name="id" placeholder="User ID" required>
-                    <input type="text" name="name" placeholder="User Name" required>
-                    <button type="submit" class="btn btn-primary">Add User</button>
+        <div class="card">
+            <h2 class="section-title">Add User</h2>
+            <form action="/save" method="post">
+                <input type="text" name="id" placeholder="User ID" required>
+                <input type="text" name="name" placeholder="User Name" required>
+                <button type="submit" class="btn-primary">Add User</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Fetch User</h2>
+            <form action="/fetch" method="post">
+                <input type="text" name="id" placeholder="Enter User ID" required>
+                <button type="submit" class="btn-secondary">Fetch User</button>
+            </form>
+
+            <div th:if="${user}">
+                <p><b>ID:</b> <span th:text="${user.id}"></span></p>
+                <p><b>Name:</b> <span th:text="${user.name}"></span></p>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="id" th:value="${user.id}">
+                    <button type="submit" class="btn-danger">Delete User</button>
                 </form>
             </div>
+        </div>
 
-            <div class="card">
-                <h2>Fetch User by ID</h2>
-                <form action="/fetch" method="post">
-                    <input type="text" name="id" placeholder="Enter User ID" required>
-                    <button type="submit" class="btn btn-secondary">Fetch User</button>
-                </form>
+        <div th:if="${successMessage}" class="message success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></div>
 
-                <div class="user-info" th:if="${user}">
-                    <p><b>ID:</b> <span th:text="${user.id}"></span></p>
-                    <p><b>Name:</b> <span th:text="${user.name}"></span></p>
-                    <form action="/delete" method="post">
-                        <input type="hidden" name="id" th:value="${user.id}">
-                        <button type="submit" class="btn btn-danger">Delete User</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Messages -->
-        <section class="message-section">
-            <div class="message success" th:if="${successMessage}" th:text="${successMessage}"></div>
-            <div class="message error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
-        </section>
-
-        <!-- All Users Table -->
-        <section class="table-section" th:if="${allUsers}">
-            <h2>All Users (Insertion Order)</h2>
+        <section th:if="${allUsers}">
+            <h2 class="section-title">All Users (Insertion Order)</h2>
             <div class="table-container">
                 <table>
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                        </tr>
+                        <tr><th>ID</th><th>Name</th></tr>
                     </thead>
                     <tbody>
                         <tr th:each="user : ${allUsers}">
@@ -77,20 +161,9 @@
     </div>
 </main>
 
-<footer class="footer">
-    <p>© 2025 @whitehorse | Redis User Manager</p>
+<footer>
+    © 2025 @Lavanya | Redis User Manager
 </footer>
-
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const messages = document.querySelectorAll('.message');
-    messages.forEach(msg => {
-      setTimeout(() => {
-        msg.classList.add('fade-out');
-      }, 3000);
-    });
-  });
-</script>
 
 </body>
 </html>
